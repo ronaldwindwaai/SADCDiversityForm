@@ -15,14 +15,15 @@ class CreateMpsTable extends Migration
     {
         Schema::create('mps', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('deputy_id');
+            $table->string('deputy_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('gender');
+            $table->date('date_of_birth')->default('CURRENT_TIMESTAMP');
             $table->string('erpp');
             $table->string('eppd');
             $table->unsignedInteger('political_party_id');
-            $table->unsignedInteger('committee_id')->nullable();
+            $table->json('committee_id')->nullable();
             $table->unsignedInteger('parliament_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();

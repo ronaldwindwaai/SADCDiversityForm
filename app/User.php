@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'full_name', 'email', 'password',
     ];
 
     /**
@@ -36,4 +37,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function parliaments()
+    {
+        return $this->hasOne(Parliament::class);
+    }
+
+    public function committees()
+    {
+        return $this->hasMany(Committee::class);
+    }
+
+    public function parties()
+    {
+        return $this->hasMany(PoliticalParty::class);
+    }
+
+    public function members()
+    {
+        return $this->hasMany(MemberParliament::class);
+    }
 }

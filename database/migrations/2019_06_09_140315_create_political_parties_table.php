@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePolicalPartiesTable extends Migration
+class CreatePoliticalPartiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -30,6 +30,6 @@ class CreatePolicalPartiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('polical_parties');
+        Schema::dropIfExists('political_parties');
     }
 }

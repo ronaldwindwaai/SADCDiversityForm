@@ -16,3 +16,7 @@ Route::get('/','Auth\LoginController@showLoginForm')->name('login_form');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('committee', 'CommitteeController');
+Route::resource('mp', 'MemberParliamentController');
+Route::resource('party', 'PoliticalPartyController');
+Route::resource('parliament', 'ParliamentController');
