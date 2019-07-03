@@ -66,7 +66,7 @@
                 @isset($political_designations)
                     <div class="form-group">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <label for="country">Political Party Designation</label>
+                            <label for="political_designation">Political Party Designation</label>
                             <select class="form-control" id="political_designation"
                                     name="political_designation" size="1">
                                 <option value="">Please select the Political Designation</option>

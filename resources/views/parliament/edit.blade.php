@@ -101,7 +101,7 @@
                             <input class="js-datepicker form-control" type="text" id="date_of_inaguration"
                                    name="date_of_inaguration" value="{{$parliament->date_of_inaguration}}"
                                    data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
-                            <label for="example-datepicker5">Date of Inaugural Plenary Session</label>
+                            <label for="date_of_inaguration">Date of Inaugural Plenary Session</label>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                             <input class="js-datepicker form-control" type="text" id="end_of_term" name="end_of_term"
                                    value="{{$parliament->end_of_term}}" data-date-format="yyyy-mm-dd"
                                    placeholder="yyyy-mm-dd">
-                            <label for="example-datepicker5">End of Parliament's Term</label>
+                            <label for="end_of_term">End of Parliament's Term</label>
                         </div>
                     </div>
                 </div>
