@@ -57,12 +57,18 @@ class MemberParliamentController extends Controller
     public function edit($id)
     {
         $mp = MemberParliament::findOrFail($id);
+        $political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
+        $committees = Committee::where('user_id','=', Auth::id())->get();
 
         if(Auth::user()->id !== $mp->user_id){
 
             return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
         }
-        return view('mp.edit')->with('Member of Parliament',$mp);
+        return view('mps.edit')->with('Member of Parliament',$mp)->with('mp',$mp)
+            ->with('genders',$this->genders)
+            ->with('reserved_political_position_descriptions',$this->reserved_political_position_descriptions)
+            ->with('political_parties',$political_parties)
+            ->with('committees',$committees);
     }
 
     /**

@@ -48,7 +48,7 @@
                     <td class="hidden-xs">{{$mp->gender}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <a href="{{route('committee.edit',$mp->id)}}"> <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Member of Parliament"><i class="ion-edit"></i></button></a>
+                            <a href="{{route('mp.edit',$mp->id)}}"> <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Member of Parliament"><i class="ion-edit"></i></button></a>
                             <form name="form{{$mp->id}}"action="{{route('mp.destroy', $mp->id)}}" method="post" enctype="multipart/form-data">
                                 @method('delete')
                                 @csrf

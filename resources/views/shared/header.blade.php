@@ -76,8 +76,13 @@
                             </li>
 
                             <li>
-                                <form name="form_logout" method="post" action="{{route('logout')}}">
-                                    <a href="#" onclick="document.form_logout.submit();">Logout</a>
+
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
                                 </form>
 
                             </li>

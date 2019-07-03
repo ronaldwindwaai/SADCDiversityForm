@@ -74,29 +74,28 @@ var BaseFormWizard = function() {
 				jQuery(e).closest( '.help-block' ).remove();
 			},
 			rules: {
-				'validation-classic-firstname': {
+				'parliament_name': {
 					required: true,
-					minlength: 2
 				},
-				'validation-classic-lastname': {
+				'country': {
 					required: true,
-					minlength: 2
 				},
-				'validation-classic-email': {
+				'parliament_type': {
 					required: true,
-					email: true
 				},
-				'validation-classic-details': {
+				'date_of_inaguration': {
 					required: true,
-					minlength: 5
 				},
-				'validation-classic-city': {
+				'end_of_term': {
+					required: true,
+				},
+				'committee_name': {
 					required: true
 				},
-				'validation-classic-skills': {
+				'parliament_party_name': {
 					required: true
 				},
-				'validation-classic-terms': {
+				'political_designation': {
 					required: true
 				}
 			},

@@ -27,7 +27,6 @@ class CommitteeController extends Controller
         } catch (\Exception $e) {
             return view('committee.index')->with('error', $e);
         } catch (\Throwable $e) {
-            $e = new FatalThrowableError($x);
             return view('committee.index')->with('error', $e);
         }
 

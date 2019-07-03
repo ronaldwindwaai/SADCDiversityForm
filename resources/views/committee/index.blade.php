@@ -22,7 +22,7 @@
         <div class="card-block">
             @if (session('errors'))
                 <div class="alert alert-danger">
-                    <p><strong>Oh snap!</strong> {{session('errors')->first('message')}}</p>
+                    <p><strong>Oh snap!</strong> {{session('errors')}}</p>
                 </div>
             @endif
             @if (session('success'))
