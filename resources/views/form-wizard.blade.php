@@ -61,7 +61,7 @@
                 <!-- For more examples please check https://github.com/jzaefferer/jquery-validation -->
                 @if (session('errors'))
                     <div class="alert alert-danger">
-                        <p><strong>Oh snap!</strong> {{session('errors')->first('message')}}</p>
+                        <p><strong>Oh snap!</strong> {{session('errors')->first('messages')}}</p>
                     </div>
                 @endif
                 @if (session('success'))
@@ -73,6 +73,7 @@
                 <!-- jQuery Validation (.js-form1 class is initialized in js/pages/base_forms_wizard.js) -->
                 <!-- For more examples please check https://github.com/jzaefferer/jquery-validation -->
                 <form class="js-form1 validation form-horizontal" action="{{route('wizard')}}" method="post">
+                @csrf
                     <!-- Steps Content -->
                     <div class="card-block tab-content">
                         <!-- Step 1 -->
@@ -141,7 +142,7 @@
                         <div class="tab-pane m-t-md m-b-lg" id="validation-classic-step2">
                             <div class="form-group">
                                 <div class="col-sm-6 col-sm-offset-3">
-                                    <label for="committee_name">Parliament Name</label>
+                                    <label for="committee_name">Committee Name</label>
                                     <input class="form-control" type="text" id="committee_name" name="committee_name"
                                            placeholder="Please enter your committee name"/>
                                 </div>
@@ -153,13 +154,10 @@
                         <div class="tab-pane m-t-md m-b-lg" id="validation-classic-step3">
                             <div class="form-group">
                                 <div class="col-sm-6 col-sm-offset-3">
-                                    <label class="col-sm-6 col-sm-offset-3" for="political-party-name">Political Party
+                                    <label for="political-party-name">Political Party
                                         Name</label>
-                                    <div class="col-sm-6 col-sm-offset-3">
-                                        <input class="form-control" type="text" id="political-party-name"
-                                               name="parliament_party_name"
-                                               placeholder="Enter political party Name...">
-                                    </div>
+                                    <input class="form-control" type="text" id="political-party-name" name="parliament_party_name"
+                                           placeholder="Please enter political party name"/>
                                 </div>
                             </div>
                             @isset($political_designations)

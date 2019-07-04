@@ -20,4 +20,4 @@ Route::resource('committee', 'CommitteeController');
 Route::resource('mp', 'MemberParliamentController');
 Route::resource('party', 'PoliticalPartyController');
 Route::resource('parliament', 'ParliamentController');
-Route::get('wizard','FormWizardController@wizard')->name('wizard');
+Route::post('wizard','FormWizardController@wizard')->name('wizard');

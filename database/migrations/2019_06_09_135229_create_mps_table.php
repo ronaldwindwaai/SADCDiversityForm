@@ -19,7 +19,7 @@ class CreateMpsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('gender');
-            $table->date('date_of_birth')->default('CURRENT_TIMESTAMP');
+            $table->date('date_of_birth')->default(date("Y-m-d"));
             $table->string('erpp');
             $table->string('eppd');
             $table->unsignedInteger('political_party_id');

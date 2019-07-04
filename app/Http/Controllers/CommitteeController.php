@@ -20,16 +20,11 @@ class CommitteeController extends Controller
 
     public function index()
     {
-        try {
-            if ($committees = Auth::user()->parliaments()->where('user_id', '=', Auth::id())->first()->committees()->get()) {
-                return view('committee.index')->with('committees', $committees);
-            }
-        } catch (\Exception $e) {
-            return view('committee.index')->with('error', $e);
-        } catch (\Throwable $e) {
-            return view('committee.index')->with('error', $e);
-        }
+        if ($committees = Committee::where('user_id', '=', Auth::id())->get()) {
 
+            return view('committee.index')->with('committees', $committees);
+
+        }
         return view('committee.index')->with('error', 'No committees created.');
 
 
