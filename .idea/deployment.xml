@@ -16,6 +16,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="form">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/SADCDiversity" local="$PROJECT_DIR$" web="/public_html" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="oneui">
         <serverdata>
           <mappings>

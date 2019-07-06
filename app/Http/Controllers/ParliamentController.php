@@ -22,7 +22,7 @@ class ParliamentController extends Controller
         $this->middleware('auth');
         $this->countries = ['Angola','Botswana','Democratic Republic of Congo','Eswatini','Lesotho','Malawi',
                             'Mozambique','Mauritius','Namibia','Seychelles','South Africa','Tanzania','Zambia','Zimbabwe',];
-        $this->types_of_parliaments = ['Lower House','Upper House','Unicameral','Other'];
+        $this->types_of_parliaments = ['unicameral','bicameral'];
     }
 
     /**

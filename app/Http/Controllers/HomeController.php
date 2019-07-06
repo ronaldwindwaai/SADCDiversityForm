@@ -29,7 +29,7 @@ class HomeController extends Controller
         $this->reserved_political_position_descriptions = ['Marginalized Community','Women Representation', 'Religious Representation','Youth Representation', 'Other'];
         $this->countries = ['Angola','Botswana','Democratic Republic of Congo','Eswatini','Lesotho','Malawi',
             'Mozambique','Mauritius','Namibia','Seychelles','South Africa','Tanzania','Zambia','Zimbabwe',];
-        $this->types_of_parliaments = ['Lower House','Upper House','Unicameral','Other'];
+        $this->types_of_parliaments = ['unicameral','bicameral'];
         $this->political_designations = ['Government', 'Opposition'];
     }
 
