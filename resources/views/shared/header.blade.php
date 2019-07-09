@@ -40,8 +40,7 @@
 
 
                     <li class="dropdown">
-                        <a href="javascript:void(0)" data-toggle="dropdown"><i class="ion-ios-bell"></i> <span
-                                    class="badge">3</span></a>
+                        <a href="javascript:void(0)" data-toggle="dropdown">
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-header">Profile</li>
                             <li>
@@ -71,9 +70,7 @@
                             <li class="dropdown-header">
                                 Pages
                             </li>
-                            <li>
-                                <a href="base_pages_profile.html">Profile</a>
-                            </li>
+
 
                             <li>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Committee;
+use App\MemberParliament;
 use App\PoliticalParty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,9 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->new_account != true){
-            return view('home');
+            if($mps =  MemberParliament::where('user_id','=', Auth::id())->get()){
+                return view('mps.index')->with('mps',$mps);
+            }
         }
         $political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
         $committees = Committee::where('user_id','=', Auth::id())->get();
@@ -52,7 +55,8 @@ class HomeController extends Controller
             ->with('committees',$committees)
             ->with('countries',$this->countries)
             ->with('types_of_parliaments',$this->types_of_parliaments)
-            ->with('political_designations',$this->political_designations);
+            ->with('political_designations',$this->political_designations)
+            ->with('no_ide_bar',true);
 
     }
 }

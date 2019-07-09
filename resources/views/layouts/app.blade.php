@@ -3,10 +3,12 @@
 <body class="app-ui layout-has-drawer layout-has-fixed-header">
 <div class="app-layout-canvas">
     <div class="app-layout-container">
+        @if(isset($no_ide_bar))
 
-        @include('shared.side_menu')
-
-       @include('shared.header')
+        @else
+            @include('shared.side_menu')
+        @endif
+        @include('shared.header')
 
         <main class="app-layout-content">
 
