@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Committee;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
@@ -11,19 +12,28 @@ use Symfony\Component\HttpFoundation\Response;
 class CommitteeController extends Controller
 {
     private $message;
+    private $user;
+    private $are_you_a_super_admin;
+    private $committees;
 
     public function __construct()
     {
         $this->middleware('auth');
+        $this->user = Auth::user();
 
     }
 
     public function index()
     {
-        if ($committees = Committee::where('user_id', '=', Auth::id())->get()) {
+        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
 
-            return view('committee.index')->with('committees', $committees);
-
+        if ($this->are_you_a_super_admin){
+            $this->committees = Committee::all();
+        }else{
+            $this->committees = Committee::where('user_id', '=', Auth::id())->get();
+        }
+        if ($this->committees) {
+            return view('committee.index')->with('committees', $this->committees);
         }
         return view('committee.index')->with('error', 'No committees created.');
 

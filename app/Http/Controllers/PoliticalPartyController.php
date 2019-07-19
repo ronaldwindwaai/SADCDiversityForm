@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PoliticalPartyController extends Controller
 {
     private $political_designations;
+    private $political_parties;
 
     public function __construct()
     {
@@ -20,8 +21,16 @@ class PoliticalPartyController extends Controller
 
     public function index()
     {
-        if($parties = PoliticalParty::where('user_id','=', Auth::id())->get()){
-            return view('political_party.index')->with('politcal_parties',$parties);
+        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
+
+        if ($this->are_you_a_super_admin){
+            $this->political_parties = PoliticalParty::all();
+        }else{
+            $this->political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
+        }
+
+        if($this->political_parties){
+            return view('political_party.index')->with('politcal_parties',$this->political_parties);
         }
         return view('political_party.index')->with('error','No Parliament created.');
     }

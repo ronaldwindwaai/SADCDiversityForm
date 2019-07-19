@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.errors')
 
 @section('title', __('Forbidden'))
 @section('code', '403')

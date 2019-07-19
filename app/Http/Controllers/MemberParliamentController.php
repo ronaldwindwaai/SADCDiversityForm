@@ -14,6 +14,8 @@ class MemberParliamentController extends Controller
 {
     private $genders;
     private $reserved_political_position_descriptions;
+    private $are_you_a_super_admin;
+    private $member_of_parliaments;
 
 
     /**
@@ -31,8 +33,16 @@ class MemberParliamentController extends Controller
      */
     public function index()
     {
-        if($mps =  MemberParliament::where('user_id','=', Auth::id())->get()){
-            return view('mps.index')->with('mps',$mps);
+        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
+
+        if ($this->are_you_a_super_admin){
+            $this->member_of_parliaments = MemberParliament::all();
+        }else{
+            $this->member_of_parliaments =  MemberParliament::where('user_id','=', Auth::id())->get();
+        }
+
+        if($this->member_of_parliaments){
+            return view('mps.index')->with('mps',$this->member_of_parliaments);
         }
         return view('mps.index')->with('error','No Member of Parliament created.');
     }
@@ -150,7 +160,6 @@ class MemberParliamentController extends Controller
             'last_name' => 'required|string|max:80',
             'gender' => 'required|string|max:10',
             'erpp' => 'required|string|max:80',
-            'eppd' => 'required|string|max:80',
             'political_party_id' => 'required',
         ];
     }

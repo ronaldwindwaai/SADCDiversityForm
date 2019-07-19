@@ -99,18 +99,19 @@
 
                         <div class="radio">
                             <label for="elected_reserved">
-                                <input type="radio" id="elected_reserved" name="erpp"
+                                <input type="radio" id="yes" onchange="show_reasons(this);" name="erpp"
                                        value="Yes"> Yes
                             </label>
                             <label for="elected_reserved">
-                                <input type="radio" id="elected_reserved" name="erpp"
-                                       value="No"> No
+                                <input type="radio" id="no" onchange="show_reasons(this);" name="erpp"
+                                       value="No" checked> No
                             </label>
                         </div>
                     </div>
                 </div>
+
                 @isset($reserved_political_position_descriptions)
-                    <div class="form-group">
+                    <div class="form-group" id="reasons" style="display: none">
                         <label class="col-sm-6 col-sm-offset-3" for="reserved_political_position_descriptions">Reason
                             for Reserved Political Position</label>
                         <div class="col-sm-6 col-sm-offset-3">
@@ -164,5 +165,18 @@
         <!-- .card-block -->
     </div>
     <!-- .card -->
+    <script>
+
+        function show_reasons(value) {
+            var reasons = document.getElementById("reasons");
+            if (value.value == "Yes") {
+                reasons.style.display = 'block';
+            } else {
+                reasons.style.display = 'none';
+            }
+        }
+
+
+    </script>
 
 @endsection

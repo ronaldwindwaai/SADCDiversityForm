@@ -30,6 +30,15 @@
     <link rel="stylesheet" id="css-app" href="{{asset('themes/assets/css/app.css')}}"/>
     <link rel="stylesheet" id="css-app-custom" href="{{asset('themes/assets/css/app-custom.css')}}"/>
     <!-- End Stylesheets -->
+
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('google-captcha', {
+                'sitekey' : '6LeHwK0UAAAAAEU1DOQcRGUfRy83hb3tfDGhyLUx'
+            });
+        };
+    </script>
+
 </head>
 
 <body class="app-ui">
@@ -128,6 +137,9 @@
 <script src="{{asset('themes/assets/js/core/jquery.placeholder.min.js')}}"></script>
 <script src="{{asset('themes/assets/js/app.js')}}"></script>
 <script src="{{asset('themes/assets/js/app-custom.js')}}"></script>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer/>
+
 
 </body>
 

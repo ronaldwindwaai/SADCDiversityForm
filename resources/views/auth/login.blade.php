@@ -12,7 +12,8 @@
                     <div class="form-group">
                         <label class="sr-only" for="frontend_login_email">Email</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                               value="{{ old('email') }}" required autocomplete="email" autofocus id="frontend_login_email" placeholder="Email"/>
+                               value="{{ old('email') }}" required autocomplete="email" autofocus
+                               id="frontend_login_email" placeholder="Email"/>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -21,19 +22,35 @@
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="frontend_login_password">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                               required autocomplete="current-password" id="frontend_login_password" placeholder="Password"/>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                               name="password"
+                               required autocomplete="current-password" id="frontend_login_password"
+                               placeholder="Password"/>
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="frontend_login_remember" class="css-input switch switch-sm switch-app">
                             <input type="checkbox" id="frontend_login_remember"/><span></span> Remember me</a>
                         </label>
                     </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div id="capture-element"></div>
+
+                        @if ($errors->has('g-recaptcha-response'))
+                                <span class="help-block">
+                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-app btn-block">Login</button>
                     <a class="btn btn-link" href="{{ route('register') }}">
                         {{ __('Sign up') }}

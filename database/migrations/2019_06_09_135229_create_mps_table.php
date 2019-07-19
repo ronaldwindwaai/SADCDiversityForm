@@ -21,7 +21,7 @@ class CreateMpsTable extends Migration
             $table->string('gender');
             $table->date('date_of_birth')->default(date("Y-m-d"));
             $table->string('erpp');
-            $table->string('eppd');
+            $table->string('eppd')->nullable();
             $table->unsignedInteger('political_party_id');
             $table->json('committee_id')->nullable();
             $table->unsignedInteger('parliament_id');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Committee;
 use App\MemberParliament;
 use App\PoliticalParty;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,7 @@ class HomeController extends Controller
     private $genders;
     private $reserved_political_position_descriptions;
     private $political_designations;
+    private $are_you_a_super_admin;
 
     /**
      * Create a new controller instance.
@@ -32,6 +34,10 @@ class HomeController extends Controller
             'Mozambique','Mauritius','Namibia','Seychelles','South Africa','Tanzania','Zambia','Zimbabwe',];
         $this->types_of_parliaments = ['unicameral','bicameral'];
         $this->political_designations = ['Government', 'Opposition'];
+
+
+
+
     }
 
     /**
@@ -41,11 +47,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
+
+        if($this->are_you_a_super_admin){
+            return view('home');
+        }
+
         if(Auth::user()->new_account != true){
             if($mps =  MemberParliament::where('user_id','=', Auth::id())->get()){
                 return view('mps.index')->with('mps',$mps);
             }
         }
+
         $political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
         $committees = Committee::where('user_id','=', Auth::id())->get();
 

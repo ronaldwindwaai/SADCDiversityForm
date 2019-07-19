@@ -16,6 +16,7 @@ class ParliamentController extends Controller
      */
     private $countries;
     private $types_of_parliaments;
+    private $parliaments;
 
     public function __construct()
     {
@@ -34,8 +35,16 @@ class ParliamentController extends Controller
      */
     public function index()
     {
-        if($parliaments = Auth::user()->parliaments()->get()){
-            return view('parliament.index')->with('parliaments',$parliaments);
+        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
+
+        if ($this->are_you_a_super_admin){
+            $this->parliaments = Parliament::all();
+        }else{
+            $this->parliaments = Auth::user()->parliaments()->get();
+        }
+
+        if($this->parliaments){
+            return view('parliament.index')->with('parliaments',$this->parliaments);
         }
         return view('parliament.index')->with('error','No Parliament created.');
     }

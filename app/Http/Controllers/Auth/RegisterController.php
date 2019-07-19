@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'country' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'signup_terms' => ['required', 'string', 'max:5'],
         ]);
     }
 
@@ -69,6 +70,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'country' => $data['country'],
             'password' => Hash::make($data['password']),
+            'signup_terms' => $data['signup_terms'],
         ]);
     }
 }

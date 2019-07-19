@@ -19,7 +19,8 @@
       <paths name="form">
         <serverdata>
           <mappings>
-            <mapping deploy="/SADCDiversity" local="$PROJECT_DIR$" web="/public_html" />
+            <mapping deploy="/public_html" local="$PROJECT_DIR$/public" web="/public_html" />
+            <mapping deploy="/SADCDiversity" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

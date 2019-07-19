@@ -16,7 +16,10 @@ class UserTableSeeder extends Seeder
             'full_name' => 'Ronald Windwaai',
             'password' => bcrypt('adminadmin'),
             'email' => 'ronaldwindwaai@gmail.com',
+            'country' => 'Kenya',
             'verified' => true,
+            'signup_terms' => true,
+
         ]);
 
         $user->assignRole('super-admin');
