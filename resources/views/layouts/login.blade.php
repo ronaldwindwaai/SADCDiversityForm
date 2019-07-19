@@ -31,13 +31,7 @@
     <link rel="stylesheet" id="css-app-custom" href="{{asset('themes/assets/css/app-custom.css')}}"/>
     <!-- End Stylesheets -->
 
-    <script type="text/javascript">
-        var onloadCallback = function() {
-            grecaptcha.render('google-captcha', {
-                'sitekey' : '6LeHwK0UAAAAAEU1DOQcRGUfRy83hb3tfDGhyLUx'
-            });
-        };
-    </script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 

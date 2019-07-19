@@ -41,7 +41,11 @@
 
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <div id="capture-element"></div>
+                            @if(env('GOOGLE_RECAPTCHA_KEY'))
+                                <div class="g-recaptcha"
+                                     data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                                </div>
+                            @endif
 
                         @if ($errors->has('g-recaptcha-response'))
                                 <span class="help-block">
