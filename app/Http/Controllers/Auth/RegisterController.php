@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'country' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'signup_terms' => ['required', 'string', 'max:5'],
+            /*'g-recaptcha-response' => ['required'],*/
         ]);
     }
 
@@ -65,12 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'full_name' => $data['full_name'],
-            'email' => $data['email'],
-            'country' => $data['country'],
-            'password' => Hash::make($data['password']),
-            'signup_terms' => $data['signup_terms'],
-        ]);
+       // try{
+
+            return User::create([
+                'full_name' => $data['full_name'],
+                'email' => $data['email'],
+                'country' => $data['country'],
+                'password' => Hash::make($data['password']),
+                'signup_terms' => $data['signup_terms'],
+            ]);
+      //  }
+        //catch(Exception $exception){
+          //  return back()->withError($exception->getMessage())->withInput();
+       // }
     }
 }

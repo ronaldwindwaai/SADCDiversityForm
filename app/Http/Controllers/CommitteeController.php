@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\HttpFoundation\Response;
+use App\Parliament;
 
 class CommitteeController extends Controller
 {
     private $message;
     private $user;
-    private $are_you_a_super_admin;
+    private $admin;
     private $committees;
 
     public function __construct()
@@ -25,12 +26,11 @@ class CommitteeController extends Controller
 
     public function index()
     {
-        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
 
-        if ($this->are_you_a_super_admin){
-            $this->committees = Committee::all();
+        if ($this->are_you_a_super_admin()){
+            $this->committees = Committee::with('parliaments')->get();
         }else{
-            $this->committees = Committee::where('user_id', '=', Auth::id())->get();
+            $this->committees = Committee::with('parliaments')->where('user_id', '=', Auth::id())->get();
         }
         if ($this->committees) {
             return view('committee.index')->with('committees', $this->committees);
@@ -60,9 +60,9 @@ class CommitteeController extends Controller
     {
         $committee = Committee::findOrFail($id);
 
-        if (Auth::user()->id !== $committee->user_id) {
+        if (Auth::user()->id !== $committee->user_id && !$this->are_you_a_super_admin()) {
 
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
         return view('committee.edit')->with('committee', $committee);
     }
@@ -86,8 +86,8 @@ class CommitteeController extends Controller
 
         $committee = Committee::findOrFail($id);
 
-        if (Auth::user()->id !== $committee->user_id) {
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+        if (Auth::user()->id !== $committee->user_id && !$this->are_you_a_super_admin()) {
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
 
         if ($committee->update($request->all())) {
@@ -100,8 +100,8 @@ class CommitteeController extends Controller
     {
         $committee = Committee::findOrFail($id);
 
-        if (Auth::user()->id !== $committee->user_id) {
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+        if (Auth::user()->id !== $committee->user_id && !$this->are_you_a_super_admin()) {
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
 
         if ($committee->delete()) {
@@ -109,6 +109,7 @@ class CommitteeController extends Controller
         }
         return redirect()->back()->withErrors(['message' => 'Unable to delete committee record']);
     }
+
 
     /**
      * Get a validator for an incoming registration request.

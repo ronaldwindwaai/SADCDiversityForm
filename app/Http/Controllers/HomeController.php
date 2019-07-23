@@ -47,9 +47,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
-
-        if($this->are_you_a_super_admin){
+        if($this->are_you_a_super_admin()){
             return view('home');
         }
 

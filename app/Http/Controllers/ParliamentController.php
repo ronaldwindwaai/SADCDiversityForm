@@ -35,9 +35,9 @@ class ParliamentController extends Controller
      */
     public function index()
     {
-        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
 
-        if ($this->are_you_a_super_admin){
+
+        if ($this->are_you_a_super_admin()){
             $this->parliaments = Parliament::all();
         }else{
             $this->parliaments = Auth::user()->parliaments()->get();
@@ -71,9 +71,9 @@ class ParliamentController extends Controller
 
         $parliament = Parliament::findOrFail($id);
 
-        if(Auth::user()->id !== $parliament->user_id){
+        if(Auth::user()->id !== $parliament->user_id && !$this->are_you_a_super_admin()){
 
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
         return view('parliament.edit')->with('parliament',$parliament)->with('countries',$this->countries)->
         with('types_of_parliaments',$this->types_of_parliaments);
@@ -106,8 +106,8 @@ class ParliamentController extends Controller
 
         $parliament = Parliament::findOrFail($id);
 
-        if(Auth::user()->id !== $parliament->user_id){
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+        if(Auth::user()->id !== $parliament->user_id && !$this->are_you_a_super_admin()){
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
 
         if($parliament->update($request->all())){
@@ -121,8 +121,8 @@ class ParliamentController extends Controller
     {
         $parliament = Parliament::findOrFail($id);
 
-        if(Auth::user()->id !== $parliament->user_id){
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+        if(Auth::user()->id !== $parliament->user_id && !$this->are_you_a_super_admin()){
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
 
         if ($parliament->delete()){

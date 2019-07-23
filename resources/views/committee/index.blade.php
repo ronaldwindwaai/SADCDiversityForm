@@ -37,8 +37,8 @@
                     <tr>
                         <th class="text-center"></th>
                         <th>Committee Name</th>
+                        <th class="hidden-xs w-20">Parliament Name</th>
                         <th class="hidden-xs">Created on</th>
-                        <th class="hidden-xs w-20">Updated on</th>
                         <th class="text-center" style="width: 10%;">Actions</th>
                     </tr>
                     </thead>
@@ -48,8 +48,8 @@
                         <tr>
                             <td class="text-center">{{$i}}</td>
                             <td class="font-500">{{$committee->name}}</td>
+                            <td class="hidden-xs">{{$committee->parliaments->name}}</td>
                             <td class="hidden-xs">{{$committee->created_at}}</td>
-                            <td class="hidden-xs">{{$committee->updated_at}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{route('committee.edit',$committee->id)}}">

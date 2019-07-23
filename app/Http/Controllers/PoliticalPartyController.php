@@ -21,18 +21,16 @@ class PoliticalPartyController extends Controller
 
     public function index()
     {
-        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
-
-        if ($this->are_you_a_super_admin){
-            $this->political_parties = PoliticalParty::all();
+        if ($this->are_you_a_super_admin()){
+            $this->political_parties = PoliticalParty::with('parliament')->get();
         }else{
-            $this->political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
+            $this->political_parties = PoliticalParty::with('parliament')->where('user_id','=', Auth::id())->get();
         }
 
         if($this->political_parties){
-            return view('political_party.index')->with('politcal_parties',$this->political_parties);
+            return view('political_party.index')->with('politcal_parties',$this->political_parties)->with('admin',$this->are_you_a_super_admin());
         }
-        return view('political_party.index')->with('error','No Parliament created.');
+        return view('political_party.index')->with('error','No Political Party created.');
     }
 
     /**
@@ -50,9 +48,9 @@ class PoliticalPartyController extends Controller
     {
         $politicalParty = PoliticalParty::findOrFail($id);
 
-        if(Auth::user()->id !== $politicalParty->user_id){
+        if(Auth::user()->id !== $politicalParty->user_id && !$this->are_you_a_super_admin()){
 
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
         return view('political_party.edit')->with('political_party',$politicalParty)->with('political_designations',$this->political_designations);
     }
@@ -78,7 +76,7 @@ class PoliticalPartyController extends Controller
         $this->validate($request, $this->rules());
 
         $politicalParty = PoliticalParty::findOrFail($id);
-        if(Auth::user()->id !== $politicalParty->user_id){
+        if(Auth::user()->id !== $politicalParty->user_id && !$this->are_you_a_super_admin()){
             return response()->json('Permission Denied',Response::HTTP_UNAUTHORIZED);
         }
 
@@ -92,9 +90,9 @@ class PoliticalPartyController extends Controller
     {
         $politicalParty = PoliticalParty::findOrFail($id);
 
-        if(Auth::user()->id !== $politicalParty->user_id){
+        if(Auth::user()->id !== $politicalParty->user_id && !$this->are_you_a_super_admin()){
 
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
 
         if ($politicalParty->delete()){

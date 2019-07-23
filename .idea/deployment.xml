@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="form">
+  <component name="PublishConfigData" serverName="form" uploadOnCheckin="e7cf973e-76bf-407b-9876-dad939ad735e">
     <serverData>
       <paths name="SADC Assets">
         <serverdata>
@@ -32,5 +32,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="form" />
   </component>
 </project>

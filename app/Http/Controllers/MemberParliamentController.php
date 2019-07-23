@@ -14,7 +14,6 @@ class MemberParliamentController extends Controller
 {
     private $genders;
     private $reserved_political_position_descriptions;
-    private $are_you_a_super_admin;
     private $member_of_parliaments;
 
 
@@ -33,16 +32,15 @@ class MemberParliamentController extends Controller
      */
     public function index()
     {
-        $this->are_you_a_super_admin = Auth::user()->hasRole('super-admin');
 
-        if ($this->are_you_a_super_admin){
-            $this->member_of_parliaments = MemberParliament::all();
+        if ($this->are_you_a_super_admin()){
+            $this->member_of_parliaments = MemberParliament::with('parliament')->get();
         }else{
-            $this->member_of_parliaments =  MemberParliament::where('user_id','=', Auth::id())->get();
+            $this->member_of_parliaments =  MemberParliament::with('politicalParty')->where('user_id','=', Auth::id())->get();
         }
 
         if($this->member_of_parliaments){
-            return view('mps.index')->with('mps',$this->member_of_parliaments);
+            return view('mps.index')->with('mps',$this->member_of_parliaments)->with('admin',$this->are_you_a_super_admin());
         }
         return view('mps.index')->with('error','No Member of Parliament created.');
     }
@@ -70,9 +68,9 @@ class MemberParliamentController extends Controller
         $political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
         $committees = Committee::where('user_id','=', Auth::id())->get();
 
-        if(Auth::user()->id !== $mp->user_id){
+        if(Auth::user()->id !== $mp->user_id && !$this->are_you_a_super_admin()){
 
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
         return view('mps.edit')->with('Member of Parliament',$mp)->with('mp',$mp)
             ->with('genders',$this->genders)
@@ -93,7 +91,6 @@ class MemberParliamentController extends Controller
         $parliament = Auth::user()->parliaments()->where('user_id', '=', Auth::id())->first();
 
         $request->offsetSet('parliament_id', $parliament->id);
-        $request->offsetSet('deputy_id', uniqid());
 
        // dd($request->all());
         if ($mp   =   Auth::user()->members()->create($request->all())){
@@ -116,8 +113,8 @@ class MemberParliamentController extends Controller
 
         $mp = MemberParliament::findOrFail($id);
 
-        if(Auth::user()->id !== $mp->user_id){
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+        if(Auth::user()->id !== $mp->user_id  && !$this->are_you_a_super_admin()){
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
         if ($mp->update($request->all())){
             return redirect()->back()->with('success', 'Successfully updated Member of Parliament record');
@@ -136,9 +133,9 @@ class MemberParliamentController extends Controller
     {
         $mp = MemberParliament::findOrFail($id);
 
-        if(Auth::user()->id !== $mp->user_id){
+        if(Auth::user()->id !== $mp->user_id  && !$this->are_you_a_super_admin()){
 
-            return response()->view('errors.404', 'Permission Denied', HTTP_UNAUTHORIZED);
+            return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
 
         if($mp->delete()){

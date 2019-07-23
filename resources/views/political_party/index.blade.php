@@ -38,7 +38,7 @@
                         <th class="text-center"></th>
                         <th>Political Party Name</th>
                         <th class="hidden-xs">Political Designation</th>
-                        <th class="hidden-xs">Political Designation</th>
+                        <th class="hidden-xs">Parliament</th>
                         <th class="text-center" style="width: 10%;">Actions</th>
                     </tr>
                     </thead>
@@ -50,7 +50,7 @@
                             <td class="text-center">{{$i}}</td>
                             <td class="font-500">{{$political_party->name}}</td>
                             <td class="hidden-xs">{{$political_party->political_designation}}</td>
-                            <td class="hidden-xs">Political Designation</td>
+                            <td class="hidden-xs">{{$political_party->parliament->name}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{route('party.edit',$political_party->id)}}">
