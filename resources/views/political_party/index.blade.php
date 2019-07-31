@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    {{trans('form.political_party.list.title')}}
+@stop
 @section('css')
     <link rel="stylesheet" href="{{asset('themes/assets/js/plugins/datatables/jquery.dataTables.min.css')}}"/>
 @stop
@@ -13,21 +16,21 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>Parliament Committees</h4>
+            <h4>{{trans('form.political_party.list.title')}}</h4>
             <a href="{{route('party.create')}}">
-                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">Create</span>
+                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">{{trans('form.create_button')}}</span>
                 </button>
             </a>
         </div>
         <div class="card-block">
             @if (session('errors'))
                 <div class="alert alert-danger">
-                    <p><strong>Oh snap!</strong> {{session('errors')->first('message')}}</p>
+                    <p><strong>{{trans('form.snap')}}</strong> {{session('errors')->first('message')}}</p>
                 </div>
             @endif
             @if (session('success'))
                 <div class="alert alert-success">
-                    <p><strong>Well done!</strong> {{session('success')}}</p>
+                    <p><strong>{{trans('form.well_done')}}</strong> {{session('success')}}</p>
                 </div>
             @endif
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
@@ -36,9 +39,9 @@
                     <thead>
                     <tr>
                         <th class="text-center"></th>
-                        <th>Political Party Name</th>
-                        <th class="hidden-xs">Political Designation</th>
-                        <th class="hidden-xs">Parliament</th>
+                        <th>{{trans('form.political_party.political_party_name')}}</th>
+                        <th class="hidden-xs">{{trans('form.political_party.political_designation')}}</th>
+                        <th class="hidden-xs">{{trans('form.political_party.parliament')}}</th>
                         <th class="text-center" style="width: 10%;">Actions</th>
                     </tr>
                     </thead>
@@ -55,7 +58,7 @@
                                 <div class="btn-group">
                                     <a href="{{route('party.edit',$political_party->id)}}">
                                         <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip"
-                                                title="Edit Political Party"><i class="ion-edit"></i></button>
+                                                title="{{trans('form.tooltip.edit')}}"><i class="ion-edit"></i></button>
                                     </a>
                                     <form name="form{{$political_party->id}}"
                                           action="{{route('party.destroy', $political_party->id)}}" method="post"
@@ -66,7 +69,7 @@
                                            onclick="document.form{{$political_party->id}}.submit();"
                                            href="javascript:void(0);">
                                             <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip"
-                                                    title="Remove Political Party"><i class="ion-close"></i></button>
+                                                    title="{{trans('form.tooltip.delete')}}"><i class="ion-close"></i></button>
                                         </a>
                                     </form>
                                 </div>

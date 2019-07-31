@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
     <!-- Document title -->
-    <title>SADC PF - Login | Diversity Form</title>
+    <title>@yield('title', 'SADC PF') | Diversity Form</title>
 
     <meta name="description" content="SADC Parliamentary Forum - Diversity Form"/>
     <meta name="robots" content="noindex, nofollow"/>
@@ -46,8 +46,8 @@
                 <div class="container">
                     <!-- Section Content -->
                     <div class="p-y-lg text-center">
-                        <h1 class="display-2">SADC Parliamentary Forum</h1>
-                        <p class="text-muted">Diversity Form</p>
+                        <h1 class="display-2">{{trans('website.title')}}</h1>
+                        <p class="text-muted">{{trans('website.sub_title')}}</p>
                     </div>
                     <!-- End Section Content -->
                 </div>
@@ -58,10 +58,7 @@
             <div class="page-content">
                 <div class="container">
                     <div class="row">
-
-
                         @yield('content')
-
                     </div>
                     <!-- .row -->
                 </div>

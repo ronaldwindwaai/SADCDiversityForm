@@ -15,6 +15,8 @@ class MemberParliamentController extends Controller
     private $genders;
     private $reserved_political_position_descriptions;
     private $member_of_parliaments;
+    private $political_parties;
+    private $committees;
 
 
     /**
@@ -23,8 +25,8 @@ class MemberParliamentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->genders = ['Male','Female','Other'];
-        $this->reserved_political_position_descriptions = ['Marginalized Community','Women Representation', 'Religious Representation','Youth Representation', 'Other'];
+        $this->genders = ['Male', 'Female', 'Other'];
+        $this->reserved_political_position_descriptions = ['Marginalized Community', 'Women Representation', 'Religious Representation', 'Youth Representation', 'Other'];
     }
 
     /**
@@ -33,16 +35,16 @@ class MemberParliamentController extends Controller
     public function index()
     {
 
-        if ($this->are_you_a_super_admin()){
+        if ($this->are_you_a_super_admin()) {
             $this->member_of_parliaments = MemberParliament::with('parliament')->get();
-        }else{
-            $this->member_of_parliaments =  MemberParliament::with('politicalParty')->where('user_id','=', Auth::id())->get();
+        } else {
+            $this->member_of_parliaments = MemberParliament::with('politicalParty')->where('user_id', '=', Auth::id())->get();
         }
 
-        if($this->member_of_parliaments){
-            return view('mps.index')->with('mps',$this->member_of_parliaments)->with('admin',$this->are_you_a_super_admin());
+        if ($this->member_of_parliaments) {
+            return view('mps.index')->with('mps', $this->member_of_parliaments)->with('admin', $this->are_you_a_super_admin());
         }
-        return view('mps.index')->with('error','No Member of Parliament created.');
+        return view('mps.index')->with('error', 'No Member of Parliament created.');
     }
 
     /**
@@ -50,12 +52,19 @@ class MemberParliamentController extends Controller
      */
     public function create()
     {
-        $political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
-        $committees = Committee::where('user_id','=', Auth::id())->get();
-        return view('mps.create')->with('genders',$this->genders)
-            ->with('reserved_political_position_descriptions',$this->reserved_political_position_descriptions)
-            ->with('political_parties',$political_parties)
-            ->with('committees',$committees);
+
+        if ($this->are_you_a_super_admin()) {
+            $this->political_parties = PoliticalParty::all();
+            $this->committees = Committee::all();
+        } else {
+            $this->political_parties = PoliticalParty::where('user_id', '=', Auth::id())->get();
+            $this->committees = Committee::where('user_id', '=', Auth::id())->get();
+        }
+
+        return view('mps.create')->with('genders', $this->genders)
+            ->with('reserved_political_position_descriptions', $this->reserved_political_position_descriptions)
+            ->with('political_parties', $this->political_parties)
+            ->with('committees', $this->committees);
     }
 
     /**
@@ -65,18 +74,23 @@ class MemberParliamentController extends Controller
     public function edit($id)
     {
         $mp = MemberParliament::findOrFail($id);
-        $political_parties = PoliticalParty::where('user_id','=', Auth::id())->get();
-        $committees = Committee::where('user_id','=', Auth::id())->get();
+        if ($this->are_you_a_super_admin()) {
+            $this->political_parties = PoliticalParty::all();
+            $this->committees = Committee::all();
+        } else {
+            $this->political_parties = PoliticalParty::where('user_id', '=', Auth::id())->get();
+            $this->committees = Committee::where('user_id', '=', Auth::id())->get();
+        }
 
-        if(Auth::user()->id !== $mp->user_id && !$this->are_you_a_super_admin()){
+        if (Auth::user()->id !== $mp->user_id && !$this->are_you_a_super_admin()) {
 
             return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
-        return view('mps.edit')->with('Member of Parliament',$mp)->with('mp',$mp)
-            ->with('genders',$this->genders)
-            ->with('reserved_political_position_descriptions',$this->reserved_political_position_descriptions)
-            ->with('political_parties',$political_parties)
-            ->with('committees',$committees);
+        return view('mps.edit')->with('Member of Parliament', $mp)->with('mp', $mp)
+            ->with('genders', $this->genders)
+            ->with('reserved_political_position_descriptions', $this->reserved_political_position_descriptions)
+            ->with('political_parties', $this->political_parties)
+            ->with('committees', $this->committees);
     }
 
     /**
@@ -86,18 +100,22 @@ class MemberParliamentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->rules());
-        //->members()->create($request->all())
-        $parliament = Auth::user()->parliaments()->where('user_id', '=', Auth::id())->first();
-
-        $request->offsetSet('parliament_id', $parliament->id);
-
-       // dd($request->all());
-        if ($mp   =   Auth::user()->members()->create($request->all())){
-            return redirect()->back()->with('success', 'Successfully added Member of Parliament record');
+        if (!$this->are_you_a_super_admin()) {
+            if ($this->validate($request, $this->rules())) {
+                //->members()->create($request->all())
+                if($parliament = Auth::user()->parliaments()->where('user_id', '=', Auth::id())->first()){
+                    $request->offsetSet('user_id', Auth::id());
+                    //dd($parliament )
+                      //dd($request->all());
+                    if ($mp = $parliament->members()->create($request->all())) {
+                        return redirect()->back()->with('success', 'Successfully added Member of Parliament record');
+                    }
+                    return redirect()->back()->withErrors(['message' => 'General Error : Unable to create Member of Parliament']);
+                }
+                return redirect()->back()->withErrors(['message' => 'Error : Unable to create Member of Parliament record']);
+            }
         }
-
-        return redirect()->back()->withErrors(['message'=>'Error : Unable to create Member of Parliament record']);
+        return redirect()->back()->withErrors(['message' => 'Error : Unable to create Member of Parliament record or you are a Super Admin']);
     }
 
 
@@ -113,16 +131,16 @@ class MemberParliamentController extends Controller
 
         $mp = MemberParliament::findOrFail($id);
 
-        if(Auth::user()->id !== $mp->user_id  && !$this->are_you_a_super_admin()){
+        if (Auth::user()->id !== $mp->user_id && !$this->are_you_a_super_admin()) {
             return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
-        if ($mp->update($request->all())){
+        if ($mp->update($request->all())) {
             return redirect()->back()->with('success', 'Successfully updated Member of Parliament record');
         }
         // $parliament = $user->parliaments()->create($request->all());
 
-        return redirect()->back()->withErrors(['message'=>'Unable to update Member of Parliament record']);
-        
+        return redirect()->back()->withErrors(['message' => 'Unable to update Member of Parliament record']);
+
     }
 
     /**
@@ -133,17 +151,18 @@ class MemberParliamentController extends Controller
     {
         $mp = MemberParliament::findOrFail($id);
 
-        if(Auth::user()->id !== $mp->user_id  && !$this->are_you_a_super_admin()){
+        if (Auth::user()->id !== $mp->user_id && !$this->are_you_a_super_admin()) {
 
             return response()->view('errors.404', 'Permission Denied', Response::HTTP_UNAUTHORIZED);
         }
 
-        if($mp->delete()){
+        if ($mp->delete()) {
             return redirect()->back()->with('success', 'Successfully deleted Member of Parliament record');
         }
-        
-        return redirect()->back()->withErrors(['message'=>'Unable to delete Member of Parliament record']);
+
+        return redirect()->back()->withErrors(['message' => 'Unable to delete Member of Parliament record']);
     }
+
     /**
      * Get a validator for an incoming registration request.
      *

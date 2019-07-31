@@ -28,9 +28,9 @@
                         <a href="#" data-toggle="dropdown">English <span class="caret"></span></a>
 
                         <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)">English</a></li>
                             <li><a href="javascript:void(0)">French</a></li>
-                            <li><a href="javascript:void(0)">German</a></li>
-                            <li><a href="javascript:void(0)">Italian</a></li>
+                            <li><a href="javascript:void(0)">Portuguese</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -41,22 +41,23 @@
 
                     <li class="dropdown">
                         <a href="javascript:void(0)" data-toggle="dropdown">
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-header">Profile</li>
-                            <li>
-                                <a tabindex="-1" href="javascript:void(0)"><span
-                                            class="badge pull-right">3</span> News </a>
-                            </li>
-                            <li>
-                                <a tabindex="-1" href="javascript:void(0)"><span
-                                            class="badge pull-right">1</span> Messages </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">More</li>
-                            <li>
-                                <a tabindex="-1" href="javascript:void(0)">Edit Profile..</a>
-                            </li>
-                        </ul>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">Profile</li>
+                                <li>
+                                    <a tabindex="-1" href="javascript:void(0)"><span
+                                                class="badge pull-right">3</span> News </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="javascript:void(0)"><span
+                                                class="badge pull-right">1</span> Messages </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">More</li>
+                                <li>
+                                    <a tabindex="-1" href="javascript:void(0)">Edit Profile..</a>
+                                </li>
+                            </ul>
+                        </a>
                     </li>
 
                     <li class="dropdown dropdown-profile">
@@ -74,11 +75,13 @@
 
                             <li>
 
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{trans('menu.logout')}}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
 

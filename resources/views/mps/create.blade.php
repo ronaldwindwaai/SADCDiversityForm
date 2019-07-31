@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    {{trans('form.mps.add.title')}}
+@stop
 @section('css')
     <link rel="stylesheet"
           href="{{asset('themes/assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css')}}"/>
@@ -31,7 +34,7 @@
 
     <div class="card">
         <div class="card-header bg-green bg-inverse">
-            <h4>Add a Member of Parliament</h4>
+            <h4>{{trans('form.mps.add.title')}}</h4>
             <ul class="card-actions">
                 <li>
                     <button type="button" data-toggle="card-action" data-action="refresh_toggle"
@@ -46,37 +49,37 @@
         <div class="card-block">
             @if (session('errors'))
                 <div class="alert alert-danger">
-                    <p><strong>Oh snap!</strong> {{session('errors')}}</p>
+                    <p><strong>{{trans('form.snap')}}</strong> {{session('errors')}}</p>
                 </div>
             @endif
             @if (session('success'))
                 <div class="alert alert-success">
-                    <p><strong>Well done!</strong> {{session('success')}}</p>
+                    <p><strong>{{trans('form.well_done')}}</strong> {{session('success')}}</p>
                 </div>
             @endif
             <form class="form-horizontal" action="{{route('mp.store')}}" method="post">
                 @csrf
                 <div class="form-group">
-                    <label class="col-sm-6 col-sm-offset-3" for="first-name">First Name</label>
+                    <label class="col-sm-6 col-sm-offset-3" for="first-name">{{trans('form.mps.first_name')}}</label>
                     <div class="col-sm-6 col-sm-offset-3">
                         <input class="form-control" type="text" id="first-name" name="first_name"
-                               placeholder="Enter First Name...">
+                               placeholder="{{trans('form.mps.place_holder.name')}}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 col-sm-offset-3" for="last-name">Last Name</label>
+                    <label class="col-sm-6 col-sm-offset-3" for="last-name">{{trans('form.mps.last_name')}}</label>
                     <div class="col-sm-6 col-sm-offset-3">
                         <input class="form-control" type="text" id="last-name" name="last_name"
-                               placeholder="Enter Last Name...">
+                               placeholder="{{trans('form.mps.place_holder.last_name')}}">
                     </div>
                 </div>
                 @isset($genders)
-                    <div class="form-group">
+                    <div class=" form-group">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <label for="gender">Gender</label>
+                            <label for="gender">{{trans('form.mps.gender')}}</label>
                             <select class="form-control" id="gender"
                                     name="gender" size="1">
-                                <option value="">Please select Gender</option>
+                                <option value="">{{trans('form.mps.place_holder.gender')}}</option>
                                 @foreach($genders as $gender)
                                     <option value="{{$gender}}">{{$gender}}</option>
                                 @endforeach
@@ -89,22 +92,22 @@
                         <div class="form-material">
                             <input class="js-datepicker form-control" type="text" id="date_of_birth"
                                    name="date_of_birth" data-date-format="yyyy/mm/dd" placeholder="yyyy/mm/dd">
-                            <label for="date_of_birth">Date of Birth</label>
+                            <label for="date_of_birth">{{trans('form.mps.dob')}}</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 col-sm-offset-3">is this a Elected as reserved Political Position</label>
+                    <label class="col-sm-6 col-sm-offset-3">{{trans('form.mps.erpp')}}</label>
                     <div class="col-sm-6 col-sm-offset-3">
 
                         <div class="radio">
                             <label for="elected_reserved">
                                 <input type="radio" id="yes" onchange="show_reasons(this);" name="erpp"
-                                       value="Yes"> Yes
+                                       value="Yes"> {{trans('form.mps.yes')}}
                             </label>
                             <label for="elected_reserved">
                                 <input type="radio" id="no" onchange="show_reasons(this);" name="erpp"
-                                       value="No" checked> No
+                                       value="No" checked> {{trans('form.mps.no')}}
                             </label>
                         </div>
                     </div>
@@ -112,12 +115,12 @@
 
                 @isset($reserved_political_position_descriptions)
                     <div class="form-group" id="reasons" style="display: none">
-                        <label class="col-sm-6 col-sm-offset-3" for="reserved_political_position_descriptions">Reason
-                            for Reserved Political Position</label>
+                        <label class="col-sm-6 col-sm-offset-3"
+                               for="reserved_political_position_descriptions">{{trans('form.mps.rpp')}}</label>
                         <div class="col-sm-6 col-sm-offset-3">
                             <select class="form-control" id="reserved_political_position_descriptions"
                                     name="eppd" size="1">
-                                <option value="">Select Reason for Reserved Political Position</option>
+                                <option value="">{{trans('form.mps.place_holder.rpp')}}</option>
                                 @foreach($reserved_political_position_descriptions as $reserved_political_position_description)
                                     <option value="{{$reserved_political_position_description}}">{{$reserved_political_position_description}}</option>
                                 @endforeach
@@ -127,11 +130,10 @@
                 @endisset
                 @isset($political_parties)
                     <div class="form-group">
-                        <label class="col-sm-6 col-sm-offset-3" for="political_party">Political Party</label>
+                        <label class="col-sm-6 col-sm-offset-3" for="political_party">{{trans('form.political_party.political_party_name')}}</label>
                         <div class="col-sm-6 col-sm-offset-3">
-                            <select class="form-control" id="political_party" name="political_party_id">
-                                name="political_party_id" size="1">
-                                <option value="">Select Political Party</option>
+                            <select class="form-control" id="political_party" name="political_party_id" size="1">
+                                <option value="">{{trans('form.mps.place_holder.political_party')}}</option>
                                 @foreach($political_parties as $political_party)
                                     <option value="{{$political_party->id}}">{{$political_party->name}}</option>
                                 @endforeach
@@ -142,7 +144,7 @@
 
                 @isset($committees)
                     <div class="form-group">
-                        <label class="col-sm-6 col-sm-offset-3" for="committee_id">Committee(s)</label>
+                        <label class="col-sm-6 col-sm-offset-3" for="committee_id">{{trans('form.committee.committee_name')}}</label>
                         <div class="col-sm-6 col-sm-offset-3">
                             <select class="js-select2 form-control" id="committee_id" name="committee_id[]"
                                     style="width: 100%;" data-placeholder="Choose the Committee(s)" multiple>
@@ -157,7 +159,7 @@
                 @endisset
                 <div class="form-group m-b-0">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <button class="btn btn-app" type="submit">Add Member of Parliament</button>
+                        <button class="btn btn-app" type="submit">{{trans('form.mps.add.form.submit')}}t</button>
                     </div>
                 </div>
             </form>
@@ -166,7 +168,6 @@
     </div>
     <!-- .card -->
     <script>
-
         function show_reasons(value) {
             var reasons = document.getElementById("reasons");
             if (value.value == "Yes") {
@@ -175,8 +176,6 @@
                 reasons.style.display = 'none';
             }
         }
-
-
     </script>
 
 @endsection

@@ -17,19 +17,19 @@
                 <li class="nav-item nav-drawer-header">Apps</li>
 
                 <li class="nav-item">
-                    <a href="{{route('parliament.index')}}"><i class="ion-ios-speedometer-outline"></i> Parliament</a>
+                    <a href="{{route('parliament.index')}}"><i class="ion-ios-speedometer-outline"></i> {{trans('menu.parliament')}}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{route('committee.index')}}"><i class="ion-ios-monitor-outline"></i> Committees</a>
+                    <a href="{{route('committee.index')}}"><i class="ion-ios-monitor-outline"></i> {{trans('menu.committees')}}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{route('party.index')}}"><i class="ion-ios-calculator-outline"></i> Political Parties</a>
+                    <a href="{{route('party.index')}}"><i class="ion-ios-calculator-outline"></i> {{trans('menu.political_parties')}}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{route('mp.index')}}"><i class="ion-social-javascript-outline"></i> Member of Parliaments(MPs)</a>
+                    <a href="{{route('mp.index')}}"><i class="ion-social-javascript-outline"></i> {{trans('menu.mps')}}</a>
                 </li>
 
             </ul>
@@ -37,9 +37,8 @@
         <!-- End drawer navigation -->
 
         <div class="drawer-footer">
-            <p class="copyright">SADC PF &copy;</p>
-            <a href="http://www.sadcpf.org"
-               target="_blank" rel="nofollow">SADC Parliamentary Forum - Diversity Form</a>
+            <p class="copyright">{{trans('website.short_title')}}</p>
+            <a href="http://www.sadcpf.org" target="_blank" rel="nofollow">{ {{trans('website.title')}} - {{trans('website.sub_title')}}</a>
         </div>
     </div>
     <!-- End drawer scroll area -->

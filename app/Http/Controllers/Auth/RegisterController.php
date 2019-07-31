@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'country' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'signup_terms' => ['required', 'string', 'max:5'],
-            /*'g-recaptcha-response' => ['required'],*/
+           /* 'g-recaptcha-response' => ['required'],*/
         ]);
     }
 

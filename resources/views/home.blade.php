@@ -27,7 +27,7 @@
     <!-- Stats -->
     <div class="row">
         <div class="col-sm-6 col-lg-3">
-            <a class="card" href="{{asset('themes/javascript:void(0)">
+            <a class="card" href="javascript:void(0)">
                 <div class="card-block clearfix">
                     <div class="pull-right">
                         <p class="h6 text-muted m-t-0 m-b-xs">Revenue</p>
@@ -43,7 +43,7 @@
         <!-- .col-sm-6 -->
 
         <div class="col-sm-6 col-lg-3">
-            <a class="card bg-green bg-inverse" href="{{asset('themes/javascript:void(0)">
+            <a class="card bg-green bg-inverse" href="javascript:void(0)">
                 <div class="card-block clearfix">
                     <div class="pull-right">
                         <p class="h6 text-muted m-t-0 m-b-xs">Total visitors</p>
@@ -59,7 +59,7 @@
         <!-- .col-sm-6 -->
 
         <div class="col-sm-6 col-lg-3">
-            <a class="card bg-blue bg-inverse" href="{{asset('themes/javascript:void(0)">
+            <a class="card bg-blue bg-inverse" href="javascript:void(0)">
                 <div class="card-block clearfix">
                     <div class="pull-right">
                         <p class="h6 text-muted m-t-0 m-b-xs">Revenue</p>
@@ -75,7 +75,7 @@
         <!-- .col-sm-6 -->
 
         <div class="col-sm-6 col-lg-3">
-            <a class="card bg-purple bg-inverse" href="{{asset('themes/javascript:void(0)">
+            <a class="card bg-purple bg-inverse" href="javascript:void(0)">
                 <div class="card-block clearfix">
                     <div class="pull-right">
                         <p class="h6 text-muted m-t-0 m-b-xs">Messages</p>
@@ -167,17 +167,17 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="dropdown-header">Profile</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">3</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">3</span>
                                         News</a>
                                 </li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">1</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">1</span>
                                         Messages</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li class="dropdown-header">More</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)">Edit Profile..</a>
+                                    <a tabindex="-1" href="javascript:void(0)">Edit Profile..</a>
                                 </li>
                             </ul>
                         </li>
@@ -192,7 +192,7 @@
                 </div>
                 <div class="card-block text-center">
                     <span class="label bg-green m-r-xs">Statistics <i class="ion-connection-bars"></i></span>
-                    <small>for the <a href="{{asset('themes/javascript:void(0)">last year</a></small>
+                    <small>for the <a href="javascript:void(0)">last year</a></small>
                 </div>
             </div>
         </div>
@@ -214,17 +214,17 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="dropdown-header">Profile</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">3</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">3</span>
                                         News</a>
                                 </li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">1</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">1</span>
                                         Messages</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li class="dropdown-header">More</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)">Edit Profile..</a>
+                                    <a tabindex="-1" href="javascript:void(0)">Edit Profile..</a>
                                 </li>
                             </ul>
                         </li>
@@ -237,7 +237,7 @@
                 </div>
                 <div class="card-block text-center">
                     <span class="label bg-green m-r-xs">Statistics <i class="ion-connection-bars"></i></span>
-                    <small>for the <a href="{{asset('themes/javascript:void(0)">last year</a></small>
+                    <small>for the <a href="javascript:void(0)">last year</a></small>
                 </div>
             </div>
             <!-- .card -->
@@ -256,17 +256,17 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="dropdown-header">Profile</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">3</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">3</span>
                                         News</a>
                                 </li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">1</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">1</span>
                                         Messages</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li class="dropdown-header">More</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)">Edit Profile..</a>
+                                    <a tabindex="-1" href="javascript:void(0)">Edit Profile..</a>
                                 </li>
                             </ul>
                         </li>
@@ -279,7 +279,7 @@
                 </div>
                 <div class="card-block text-center">
                     <span class="label bg-green m-r-xs">Statistics <i class="ion-connection-bars"></i></span>
-                    <small>for the <a href="{{asset('themes/javascript:void(0)">last year</a></small>
+                    <small>for the <a href="javascript:void(0)">last year</a></small>
                 </div>
             </div>
             <!-- .card -->
@@ -301,17 +301,17 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="dropdown-header">Profile</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">3</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">3</span>
                                         News</a>
                                 </li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)"><span class="badge pull-right">1</span>
+                                    <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">1</span>
                                         Messages</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li class="dropdown-header">More</li>
                                 <li>
-                                    <a tabindex="-1" href="{{asset('themes/javascript:void(0)">Edit Profile..</a>
+                                    <a tabindex="-1" href="javascript:void(0)">Edit Profile..</a>
                                 </li>
                             </ul>
                         </li>

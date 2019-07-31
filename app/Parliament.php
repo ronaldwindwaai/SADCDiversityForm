@@ -57,7 +57,7 @@ class Parliament extends Model
      */
     public function members()
     {
-        return $this->hasMany(Committee::class);
+        return $this->hasMany(MemberParliament::class);
     }
 
     public function getDateOfInaguration($value)

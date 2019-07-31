@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    {{trans('form.political_party.add.title')}}
+@stop
 @section('css')
     <link rel="stylesheet"
           href="{{asset('themes/assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css')}}"/>
@@ -46,30 +49,30 @@
         <div class="card-block">
             @if (session('errors'))
                 <div class="alert alert-danger">
-                    <p><strong>Oh snap!</strong> {{session('errors')->first('message')}}</p>
+                    <p><strong>{{trans('form.snap')}}</strong> {{session('errors')->first('message')}}</p>
                 </div>
             @endif
             @if (session('success'))
                 <div class="alert alert-success">
-                    <p><strong>Well done!</strong> {{session('success')}}</p>
+                    <p><strong>{{trans('form.well_done')}}</strong> {{session('success')}}</p>
                 </div>
             @endif
             <form class="form-horizontal" action="{{route('party.store')}}" method="post">
                 @csrf
                 <div class="form-group">
-                    <label class="col-sm-6 col-sm-offset-3" for="parliament-name">Political Party Name</label>
+                    <label class="col-sm-6 col-sm-offset-3" for="parliament-name">{{trans('form.political_party.political_party_name')}}</label>
                     <div class="col-sm-6 col-sm-offset-3">
                         <input class="form-control" type="text" id="parliament-name" name="name"
-                               placeholder="Enter Parliament Name...">
+                               placeholder="{{trans('form.political_party.place_holder')}}">
                     </div>
                 </div>
                 @isset($political_designations)
                     <div class="form-group">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <label for="political_designation">Political Party Designation</label>
+                            <label for="political_designation">{{trans('form.political_party.political_designation')}}</label>
                             <select class="form-control" id="political_designation"
                                     name="political_designation" size="1">
-                                <option value="">Please select the Political Designation</option>
+                                <option value="">{{trans('form.political_party.select_designation')}}</option>
                                 @foreach($political_designations as $political_designation)
                                     <option value="{{$political_designation}}">{{$political_designation}}</option>
                                 @endforeach
@@ -79,7 +82,7 @@
                 @endisset
                 <div class="form-group m-b-0">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <button class="btn btn-app" type="submit">Add Political Party</button>
+                        <button class="btn btn-app" type="submit">{{trans('form.political_party.add.form.submit')}}</button>
                     </div>
                 </div>
             </form>

@@ -48,7 +48,7 @@ class HomeController extends Controller
     public function index()
     {
         if($this->are_you_a_super_admin()){
-            return view('home');
+            return view('home')->with('users',$this->getUsers());
         }
 
         if(Auth::user()->new_account != true){
@@ -69,5 +69,10 @@ class HomeController extends Controller
             ->with('political_designations',$this->political_designations)
             ->with('no_ide_bar',true);
 
+    }
+
+    protected function getUsers()
+    {
+        return User::all();
     }
 }
