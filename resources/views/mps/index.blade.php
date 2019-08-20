@@ -19,7 +19,7 @@
         <div class="card-header">
             <h4>{{trans('form.mps.list.title')}}</h4>
             <a href="{{route('mp.create')}}">
-                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">{{trans('form.mps.list.form.submit')}}</span>
+                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">{{trans('form.create_button.mps')}}</span>
                 </button>
             </a>
         </div>

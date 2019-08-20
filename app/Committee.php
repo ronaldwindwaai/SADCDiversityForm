@@ -29,7 +29,7 @@ class Committee extends Model
      */
     public function parliaments()
     {
-        return $this->belongsTo(Parliament::class);
+        return $this->belongsTo(Parliament::class,'parliament_id','id');
     }
 
     /**

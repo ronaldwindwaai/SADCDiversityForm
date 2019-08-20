@@ -18,7 +18,7 @@
         <div class="card-header">
             <h4>{{trans('form.parliament.list.title')}}</h4>
             <a href="{{route('parliament.create')}}">
-                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">{{trans('form.create_button')}}</span>
+                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">{{trans('form.create_button.parliament')}}</span>
                 </button>
             </a>
         </div>

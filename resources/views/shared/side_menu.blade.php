@@ -38,7 +38,7 @@
 
         <div class="drawer-footer">
             <p class="copyright">{{trans('website.short_title')}}</p>
-            <a href="http://www.sadcpf.org" target="_blank" rel="nofollow">{ {{trans('website.title')}} - {{trans('website.sub_title')}}</a>
+            <a href="http://www.sadcpf.org" target="_blank" rel="nofollow">{{trans('website.title')}} - {{trans('website.sub_title')}}</a>
         </div>
     </div>
     <!-- End drawer scroll area -->

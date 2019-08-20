@@ -63,7 +63,7 @@
                     <label class="col-sm-6 col-sm-offset-3" for="first-name">{{trans('form.mps.first_name')}}</label>
                     <div class="col-sm-6 col-sm-offset-3">
                         <input class="form-control" type="text" id="first-name" name="first_name"
-                               placeholder="{{trans('form.mps.place_holder.name')}}">
+                               placeholder="{{trans('form.mps.place_holder.first_name')}}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -159,7 +159,7 @@
                 @endisset
                 <div class="form-group m-b-0">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <button class="btn btn-app" type="submit">{{trans('form.mps.add.form.submit')}}t</button>
+                        <button class="btn btn-app" type="submit">{{trans('form.mps.add.form.submit')}}</button>
                     </div>
                 </div>
             </form>

@@ -5,7 +5,12 @@ return [
     'well_done' => 'Well done!',
     'created_on' => 'Created On',
     'updated_on' => 'Updated On',
-    'create_button' => 'Create',
+    'create_button' => [
+        'parliament' => 'Add a Parliament',
+        'committee' => 'Add a Committee',
+        'political_party' => 'Add a Political Party',
+        'mps' => 'Add a Member of Parliament',
+    ],
     'actions' => 'Actions',
     'tooltip' => [
         'edit' => 'Edit',
@@ -143,13 +148,13 @@ return [
         'add' => [
             'title' => 'Add a Member of Parliament',
             'form' => [
-                'submit' => 'Add Political Party',
+                'submit' => 'Add Member of Parliament',
             ]
         ],
         'edit' => [
-            'title' => 'Update Political Party',
+            'title' => 'Update Member of Parliament',
             'form' => [
-                'submit' => 'Update Political Party',
+                'submit' => 'Update Member of Parliament',
             ]
         ],
 

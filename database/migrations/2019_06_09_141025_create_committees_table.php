@@ -16,7 +16,7 @@ class CreateCommitteesTable extends Migration
         Schema::create('committees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedInteger('parliaments_id');
+            $table->unsignedInteger('parliament_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });

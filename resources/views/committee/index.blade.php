@@ -18,7 +18,7 @@
         <div class="card-header">
             <h4>{{trans('form.committee.list.title')}}</h4>
             <a href="{{route('committee.create')}}">
-                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">{{trans('form.create_button')}}</span>
+                <button class="btn btn-app" type="button"><i class="ion-archive"></i> <span class="m-l-xs hidden-xs">{{trans('form.create_button.committee')}}</span>
                 </button>
             </a>
         </div>

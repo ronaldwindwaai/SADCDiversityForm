@@ -39,7 +39,7 @@ class FormWizardController extends Controller
         $committee = new Committee();
 
         $committee->user_id =  $user_id;
-        $committee->parliaments_id =  $parliament->id;
+        $committee->parliament_id =  $parliament->id;
         $committee->name = $request->committee_name;
 
         $committee->save();
